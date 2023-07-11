@@ -24,7 +24,7 @@ class _FavoritePageState extends State<FavoritePage> {
         backgroundColor: kWhite,
         iconTheme: const IconThemeData(color: kTitleColor),
         elevation: 0,
-        title: Text('BookMark',style: kTextStyle.copyWith(color: kTitleColor,fontWeight: FontWeight.bold),),
+        title: Text('BookMarks',style: kTextStyle.copyWith(color: kTitleColor,fontWeight: FontWeight.bold),),
       ),
       body: SafeArea(
         child: GetBuilder<ProductController>(
