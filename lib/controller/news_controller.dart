@@ -4,13 +4,13 @@ import '../Model/model.dart';
 
 class ProductController extends GetxController {
   List<ProductModel> productData = <ProductModel>[].obs;
-  List<ProductModel> cartItem = List<ProductModel>.empty().obs;
-  addToCart(ProductModel item) {
-    cartItem.add(item);
-  }
-
-  double get totalPrice => cartItem.fold(0, (sum, item) => sum + item.price);
-  int get count => cartItem.length;
+  // List<ProductModel> cartItem = List<ProductModel>.empty().obs;
+  // addToCart(ProductModel item) {
+  //   cartItem.add(item);
+  // }
+  //
+  // double get totalPrice => cartItem.fold(0, (sum, item) => sum + item.price);
+  // int get count => cartItem.length;
   @override
   void onInit() {
     super.onInit();
@@ -78,8 +78,6 @@ class ProductController extends GetxController {
 
   void removeFavoriteItems(id) {
     productData.removeAt(id);
-    refresh();
-
     update();
   }
 

@@ -138,12 +138,18 @@ class _HomeState extends State<Home> {
                                   return ListView.builder(
                                       itemCount: productController.productData.length,
                                       scrollDirection: Axis.horizontal,
+                                      shrinkWrap: true,
                                       itemBuilder: (_, index) {
                                         return InkWell(
                                           onTap: () {
-                                            Get.to(ArticilePageDetails(
+
+                                            Navigator.push(
+                                              context,
+                                              MaterialPageRoute(builder: (context) =>  ArticilePageDetails(
                                               productModel: productController.productData[index],
-                                            ));
+                                            ))
+                                            );
+                                           
                                           },
                                           child: Padding(
                                             padding: const EdgeInsets.only(right: 10.0,top: 10),

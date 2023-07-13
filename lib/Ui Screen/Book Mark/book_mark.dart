@@ -38,39 +38,47 @@ class _FavoritePageState extends State<FavoritePage> {
           ],
         ),
       ),
-      body: SafeArea(child: GetBuilder<ProductController>(
-        builder: (context) {
-          if (favoriteList.isEmpty) {
-            return Center(
-              child: Padding(
-                padding: const EdgeInsets.all(20.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset('images/bookMarkIcon.png',width: 72,height: 72,),
-                     Text(
-                       'You haven\'t saved any articles yet.Start reading and bookmarking them now',
-                       style: kTextStyle.copyWith(color: kSubTitleColor,),textAlign: TextAlign.center,
-                     ),
-                  ],
+      body: SafeArea(
+        child: GetBuilder<ProductController>(
+          builder: (context) {
+            final favoriteList =
+            productController.productData.where((item) => item.favorite).toList();
+
+            if (favoriteList.isEmpty) {
+              return Center(
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Image.asset(
+                        'images/bookMarkIcon.png',
+                        width: 72,
+                        height: 72,
+                      ),
+                      Text(
+                        'You haven\'t saved any articles yet. Start reading and bookmarking them now',
+                        style: TextStyle(color: Colors.grey),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            );
-          } else {
-            return ListView.builder(
-              itemCount: favoriteList.length,
-              itemBuilder: (context, index) {
-                ProductModel item = favoriteList[index];
-                return SizedBox(
-                  child: Padding(
-                    padding: const EdgeInsets.only(bottom: 10.0, right: 10, left: 10),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: favoriteList.length,
+                itemBuilder: (context, index) {
+                  final item = favoriteList[index];
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
                     child: Card(
                       child: Padding(
                         padding: const EdgeInsets.all(8.0),
                         child: ListTile(
                           horizontalTitleGap: 5,
-                          contentPadding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
+                          contentPadding: EdgeInsets.zero,
                           leading: Container(
                             height: 50,
                             width: 50,
@@ -85,8 +93,10 @@ class _FavoritePageState extends State<FavoritePage> {
                           title: Text(item.productName),
                           trailing: IconButton(
                             onPressed: () {
-                              productController.addToFavorite(productController.productData[index].id);
-                              favoriteList.removeAt(index);
+                              setState(() {
+                                favoriteList.removeAt(index);
+                              });
+                              productController.addToFavorite(item.id);
                             },
                             icon: const Icon(
                               Icons.bookmark,
@@ -96,13 +106,12 @@ class _FavoritePageState extends State<FavoritePage> {
                         ),
                       ),
                     ),
-                  ),
-                );
-              },
-            );
-          }
-        },
-      )
+                  );
+                },
+              );
+            }
+          },
+        ),
       ),
     );
   }
