@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nuntium/Const/const.dart';
 
-import '../Home/HomeScreen.dart';
 import '../OnBoarding_Screen/onboarding.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -14,11 +13,11 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   
   Future<void> goto()async {
-    Future.delayed(Duration(seconds: 3)).then((value) =>
+    Future.delayed(const Duration(seconds: 3)).then((value) =>
 
         Navigator.push(
           context,
-          MaterialPageRoute(builder: (context) => const HomeNav()),
+          MaterialPageRoute(builder: (context) => const OnBoardingScreen()),
         ),
 
     );

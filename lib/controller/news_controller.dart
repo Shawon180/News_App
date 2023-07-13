@@ -31,18 +31,39 @@ class ProductController extends GetxController {
           favorite: false),
       ProductModel(
           id: 2,
-          productName: 'Olive',
-          productDetail: 'Good Product 3',
-          productPicture: 'https://cdn.pixabay.com/photo/2016/05/24/13/29/olive-oil-1412361_1280.jpg',
+          productName: 'Food storage project halfway though a decade has gone by',
+          productDetail: 'A government project aiming to enhance food security in Bangladesh has made less than 50 per cent progress even though nearly 10 years have passed since the Tk 3,569 crore initiative ',
+          productPicture: 'https://tds-images.thedailystar.net/sites/default/files/styles/big_201/public/images/2023/07/13/silo.jpg',
           price: 25,
           favorite: false),
       ProductModel(
           id: 3,
-          productName: 'Breakfast',
-          productDetail: 'Good Product 4',
-          productPicture: 'https://cdn.pixabay.com/photo/2016/11/06/23/31/breakfast-1804457_1280.jpg',
+          productName: 'Is the proposed pension scheme really universal?',
+          productDetail: 'A government project aiming to enhance food security in Bangladesh has made less than 50 per cent progress even though nearly 10 years have passed since the Tk 3,569 crore initiative ',
+          productPicture: 'https://tds-images.thedailystar.net/sites/default/files/styles/medium_202/public/images/2023/07/12/bnp-rally.jpg',
           price: 20,
           favorite: false),
+      ProductModel(
+          id: 4,
+          productName: 'No polls unless under Hasina: AL declares at rally',
+          productDetail:
+          'As the dust settles on the two-day retirement saga of Tamim Iqbal, the question  that naturally arises now is what will happen next. Tamim, as we all know by now, has revoked his retirement and will once again join the team as captain in the Asia Cup. The Southpaw is also set to lead the team in the 2023 ICC World Cup in India.',
+          productPicture:
+          'https://tds-images.thedailystar.net/sites/default/files/styles/medium_202/public/images/2023/07/12/al-rally.jpg',
+          price: 22,
+          favorite: false),
+      ProductModel(
+          id: 5,
+          productName: 'RMG export to India crosses \$1 billion',
+          productDetail:
+          'As the dust settles on the two-day retirement saga of Tamim Iqbal, the question  that naturally arises now is what will happen next. Tamim, as we all know by now, has revoked his retirement and will once again join the team as captain in the Asia Cup. The Southpaw is also set to lead the team in the 2023 ICC World Cup in India.',
+          productPicture:
+          'https://tds-images.thedailystar.net/sites/default/files/styles/big_201/public/images/2023/07/13/rmg.jpg',
+          price: 22,
+          favorite: false),
+
+
+
     ];
 
     productData.assignAll(severRes);
@@ -57,7 +78,12 @@ class ProductController extends GetxController {
 
   void removeFavoriteItems(id) {
     productData.removeAt(id);
+    refresh();
 
     update();
   }
+
+
+
+
 }

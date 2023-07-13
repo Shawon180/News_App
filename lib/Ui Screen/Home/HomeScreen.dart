@@ -17,7 +17,7 @@ class _HomeNavState extends State<HomeNav> {
   final _pages=[
     const Home(),
     const DashBoard(),
-    const FavoritePage(),
+      FavoritePage(),
     const Profile(),
   ];
   @override

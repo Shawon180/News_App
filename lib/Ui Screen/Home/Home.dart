@@ -4,9 +4,7 @@ import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:nuntium/Const/const.dart';
 import 'package:nuntium/controller/news_controller.dart';
-import '../Book Mark/book_mark.dart';
 import 'article_page_details.dart';
-
 
 class Home extends StatefulWidget {
   const Home({Key? key}) : super(key: key);
@@ -28,26 +26,26 @@ class _HomeState extends State<Home> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const SizedBox(
-                  height: 15,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'images/Group2.png',
-                      width: 30,
-                      height: 30,
-                    ),
-                    const SizedBox(
-                      width: 10,
-                    ),
-                    Text(
-                      'Nuntium',
-                      style: kTextStyle.copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 18),
-                    ),
-                  ],
-                ),
+                // const SizedBox(
+                //   height: 15,
+                // ),
+                // Row(
+                //   mainAxisAlignment: MainAxisAlignment.center,
+                //   children: [
+                //     Image.asset(
+                //       'images/Group2.png',
+                //       width: 30,
+                //       height: 30,
+                //     ),
+                //     const SizedBox(
+                //       width: 10,
+                //     ),
+                //     Text(
+                //       'Nuntium',
+                //       style: kTextStyle.copyWith(color: kPrimaryColor, fontWeight: FontWeight.bold, fontSize: 18),
+                //     ),
+                //   ],
+                // ),
                 const SizedBox(
                   height: 15,
                 ),
@@ -55,11 +53,6 @@ class _HomeState extends State<Home> {
                   'Browse',
                   style: kTextStyle.copyWith(color: kTitleColor, fontWeight: FontWeight.bold, fontSize: 20),
                 ),
-                IconButton(
-                    onPressed: () {
-                      Get.to(const FavoritePage());
-                    },
-                    icon: const Icon(Icons.favorite)),
                 const SizedBox(
                   height: 10,
                 ),
@@ -140,67 +133,69 @@ class _HomeState extends State<Home> {
                         Expanded(
                           child: TabBarView(
                             children: <Widget>[
-                              GetBuilder<ProductController>(builder: (controller) {
-                                return ListView.builder(
-                                    itemCount: productController.productData.length,
-                                    scrollDirection: Axis.horizontal,
-                                    itemBuilder: (_, index) {
-                                      return InkWell(
-                                        onTap: () {
-                                          Get.to(ArticilePageDetails(
-                                            productModel: productController.productData[index],
-                                          ));
-                                        },
-                                        child: Padding(
-                                          padding: const EdgeInsets.only(right: 10.0),
-                                          child: Column(
-                                            crossAxisAlignment: CrossAxisAlignment.start,
-                                            children: [
-                                              Container(
-                                                height: 200,
-                                                width: MediaQuery.of(context).size.width / 1.2,
-                                                decoration: BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(16),
-                                                  image: DecorationImage(
-                                                      image: NetworkImage(productController.productData[index].productPicture), fit: BoxFit.cover),
-                                                ),
-                                                child: Padding(
-                                                  padding: const EdgeInsets.all(10.0),
-                                                  child: Column(
-                                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                                    children: [
-                                                      Row(
-                                                        mainAxisAlignment: MainAxisAlignment.end,
-                                                        children: [
-                                                          IconButton(
-                                                              onPressed: () {
-                                                                productController.addToFavorite(productController.productData[index].id);
-                                                              },
-                                                              icon: productController.productData[index].favorite
-                                                                  ? const Icon(
-                                                                      Icons.bookmark,
-                                                                      color: kWhite,
-                                                                    )
-                                                                  : const Icon(
-                                                                      Icons.bookmark_border,
-                                                                      color: kWhite,
-                                                                    ))
-                                                        ],
-                                                      ),
-                                                      Text(
-                                                        productController.productData[index].productName,
-                                                        style: kTextStyle.copyWith(color: kWhite, fontWeight: FontWeight.bold, fontSize: 20),
-                                                      ),
-                                                    ],
+                              StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
+                                return GetBuilder<ProductController>(builder: (controller) {
+                                  return ListView.builder(
+                                      itemCount: productController.productData.length,
+                                      scrollDirection: Axis.horizontal,
+                                      itemBuilder: (_, index) {
+                                        return InkWell(
+                                          onTap: () {
+                                            Get.to(ArticilePageDetails(
+                                              productModel: productController.productData[index],
+                                            ));
+                                          },
+                                          child: Padding(
+                                            padding: const EdgeInsets.only(right: 10.0,top: 10),
+                                            child: Column(
+                                              crossAxisAlignment: CrossAxisAlignment.start,
+                                              children: [
+                                                Container(
+                                                  height: 200,
+                                                  width: MediaQuery.of(context).size.width / 1.2,
+                                                  decoration: BoxDecoration(
+                                                    borderRadius: BorderRadius.circular(16),
+                                                    image: DecorationImage(
+                                                        image: NetworkImage(productController.productData[index].productPicture), fit: BoxFit.cover),
+                                                  ),
+                                                  child: Padding(
+                                                    padding: const EdgeInsets.all(10.0),
+                                                    child: Column(
+                                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                                      crossAxisAlignment: CrossAxisAlignment.start,
+                                                      children: [
+                                                        Row(
+                                                          mainAxisAlignment: MainAxisAlignment.end,
+                                                          children: [
+                                                            IconButton(
+                                                                onPressed: () {
+                                                                  productController.addToFavorite(productController.productData[index].id);
+                                                                },
+                                                                icon: productController.productData[index].favorite
+                                                                    ? const Icon(
+                                                                        Icons.bookmark,
+                                                                        color: kWhite,
+                                                                      )
+                                                                    : const Icon(
+                                                                        Icons.bookmark_border,
+                                                                        color: kWhite,
+                                                                      ))
+                                                          ],
+                                                        ),
+                                                        Text(
+                                                          productController.productData[index].productName,
+                                                          style: kTextStyle.copyWith(color: kWhite, fontWeight: FontWeight.bold, fontSize: 20),
+                                                        ),
+                                                      ],
+                                                    ),
                                                   ),
                                                 ),
-                                              ),
-                                            ],
+                                              ],
+                                            ),
                                           ),
-                                        ),
-                                      );
-                                    });
+                                        );
+                                      });
+                                });
                               }),
                               const Center(
                                 child: Icon(Icons.directions_transit),
